@@ -4,7 +4,7 @@
 
 ## Remark
 
-Remarkとは「Markdown processor」という紹介文の通り、Remarkで書かれたテキストを読み込み様々な変換を施すことができるJavaScript製のライブラリです。Remarkは様々なライブラリと組み合わせて目的の形式のテキストに変換することができ、**Rehype** と一緒に使うことでMarkdownをHTMLに変換することができます。同様の処理をしてくれるライブラリとしてはMarked.jsが有名ですが、Remarkの強力な機能は、Markdownを **抽象構文木（AST）**に変換することで、より柔軟に構文を改造することができる点です[^ Haskell製のライブラリ **Pandoc** も同様の方針で実装されたテキスト変換ツールで、様々な形式のテキストを入力・出力することができます]。
+Remarkとは「Markdown processor」という紹介文の通り、Remarkで書かれたテキストを読み込み様々な変換を施すことができるJavaScript製のライブラリです。Remarkは様々なライブラリと組み合わせて目的の形式のテキストに変換することができ、**Rehype** と一緒に使うことでMarkdownをHTMLに変換することができます。同様の処理をしてくれるライブラリとしてはMarked.jsが有名ですが、Remarkの強力な機能は、Markdownを **抽象構文木（AST）**に変換することで、より柔軟に構文を改造することができる点です。[^ Haskell製のライブラリ **Pandoc** も同様の方針で実装されたテキスト変換ツールで、様々な形式のテキストを入力・出力することができます]
 
 なお、非常に紛らわしいのですが、GitHub上で検索すると「Remark」という名前のプロジェクトが2つ見つかります。今回紹介するプロジェクトは `gnab/remark` ではなく、`remarkjs/remark` のほうです。公式サイトも https://remarkjs.com ではなく https://remark.js.org なので気をつけてください。
 
@@ -35,12 +35,12 @@ Input ->- | Parser | ->- Syntax Tree ->- | Compiler | ->- Output
                         +--------------+
 ```
 
-Remarkを使って文章を変換しようとする際は、`parse`、`run`、`stringify`の3つの処理を経ることになります。例えばMarkdownからHTMLへ変換する際は、**remark-parse** を使ってmdast形式に解析し、**remark-rehype** を使ってhast形式に変換した後 **rehype-stringify** でHTML形式のテキストを出力します。
+Remarkを使って文章を変換しようとする際は、`parse`、`run`、`stringify` の3つの処理を経ることになります。例えばMarkdownからHTMLへ変換する際は、**remark-parse** を使ってmdast形式に解析し、**remark-rehype** を使ってhast形式に変換した後 **rehype-stringify** でHTML形式のテキストを出力します。
 
 
 ## Markdownをパースしてみる
 
-まずはRemarkを使ってMarkdownをHTMLに変換するところから始めてみます。ひとまず以下のパッケージをインストールします[^ 以降の例ではNode.js上での実行を前提としますが、Remarkはブラウザ上でも問題無く動作します]。
+まずはRemarkを使ってMarkdownをHTMLに変換するところから始めてみます。ひとまず以下のパッケージをインストールします。[^ 以降の例ではNode.js上での実行を前提としますが、Remarkはブラウザ上でも問題無く動作します]
 
 ```
 npm i -s unified remark-parse remark-rehype rehype-stringify
@@ -74,7 +74,7 @@ processor.process(input).then(({ contents }) => {
 <p><strong>太字</strong><em>斜体</em>テキスト</p>
 ```
 
-「Unifiedエコシステム」で紹介した通り、`processor` は `parse`、`run`、`stringify`を連続して実行したものです。以下のコードで、`parse` 終了時と `run` 終了時の内容を見てみましょう。
+「Unifiedエコシステム」で紹介した通り、`processor` は `parse`、`run`、`stringify` を連続して実行したものです。以下のコードで、`parse` 終了時と `run` 終了時の内容を見てみましょう。
 
 ```js
 const inspect = require('unist-util-inspect');
@@ -125,7 +125,7 @@ hastも基本的な構造は同じですが、`paragraph` などの代わりに 
 
 ## Parserを拡張してみる
 
-ASTによる文章の構造化により、Remarkは要求に応じて構文を定義することが簡単にできることが特徴です。それでは、本章で実際に独自のMarkdownを作ってみます。今回はふりがなをふることができる「ルビ」を独自の構文で定義してみましょう。ルビを表現するための構文は色々と考えられますが、今回は某小説投稿サイトにしたがって以下のようなルールにしたがって作ります。
+ASTによる文章の構造化により、Remarkは要求に応じて構文を定義することが簡単にできることが特徴です。それでは、本章で実際に独自のMarkdownを作ってみます。今回はふりがなをふることができる「ルビ」を独自の構文で定義してみましょう。ルビを表現するための構文は色々と考えられますが、今回は某小説投稿サイトにしたがって以下のようなルールの構文を作ります。
 
 - 縦棒 `｜` でルビの開始地点を表す
 - 二重山括弧 `《》` の中にルビ本体を記述する
@@ -205,7 +205,7 @@ const processor = unified()
 root[1] (1:1-1:20, 0-19)
 └─ paragraph[2] (1:1-1:20, 0-19)
    ├─ text: "とある魔術の" (1:1-1:7, 0-6)
-   └─ ruby\[1] (1:7-1:20, 6-19) [rubyText="インデックス"\][data={"hName":"ruby"}]
+   └─ ruby[1] (1:7-1:20, 6-19) [rubyText="インデックス"][data={"hName":"ruby"}]
       └─ text: "禁書目録" (1:8-1:12, 7-11)
 ```
 
