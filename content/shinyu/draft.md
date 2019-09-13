@@ -59,7 +59,7 @@
 - [#418: Add TrimBox and BleedBox to output PDF](https://github.com/vivliostyle/vivliostyle.js/issues/418)
   - **要望**：Vivliostyle でトンボ付きで PDF 出力したとき TrimBox と BleedBox の情報も出力されてほしい。
 - [#432: @page size value ignores decimal numbers](https://github.com/vivliostyle/vivliostyle.js/issues/432)
-  - **問題**：Chrome ブラウザでは CSS の `@page { size: … }` で指定のページサイズで PDF が生成されるが、そのとき整数ポイント単位に丸められてしまし正確なページサイズにならない。
+  - **問題**：Chrome ブラウザでは CSS の `@page { size: … }` で指定のページサイズで PDF が生成されるが、そのとき整数ポイント単位に丸められてしまい正確なページサイズにならない。
 
 ## Input formats（多様な入力文書フォーマットのサポート）
 
@@ -120,7 +120,7 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **メモ**：現在の段組の実装は、EPUB Adaptive Layout でのページ区画で指定する段組の実装がベースで、ルートまたは body 要素に指定された段組をページエリア全体の段組の扱いに変えてサポートしている。それ以外の要素での段組のプロパティはそのままブラウザに渡されるので、ページの中で部分的に使われたときに機能するが、複数ページに渡るときの分割処理などはできていない。
 - [#542: Support column-span](https://github.com/vivliostyle/vivliostyle.js/issues/542)
   - **要望**：段組の段抜きを指定する `column-span` プロパティのサポート。
-  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置することができる。
+  - **代替手段**: EPUB Adaptive Layout を使用する。ページテンプレートでページ区画を定義することで、段組で段抜きの区画があるようなレイアウトが実現できる。
 
 ## Web standards（Web標準仕様のサポート）
 
