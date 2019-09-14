@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+h1,
+h2,
+h3 {
+  font-feature-settings: 'palt';
+}
+
+a {
+  text-decoration: none;
+  color: $color_blue;
+}
+
+a:visited {
+  color: $color_purple;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $color_red;
+}
+
+p {
+  font-feature-settings: 'palt';
+}
+
+.footnote-ref {
+  text-decoration: none;
+
+  &:visited {
+    color: $color_blue;
+  }
+
+  &::before {
+    content: '[';
+  }
+
+  &::after {
+    content: ']';
+  }
+}
