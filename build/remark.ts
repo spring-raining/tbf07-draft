@@ -11,7 +11,7 @@ export const highlight = () => (node: any) => {
   visit(node, 'code', (node: any) => {
     let { lang, data, value } = node
     if (!lang || !refractor.registered(lang)) {
-      return
+      lang = 'text'
     }
 
     if (!data) {
@@ -23,7 +23,9 @@ export const highlight = () => (node: any) => {
       data.hProperties = {}
     }
 
-    data.hChildren = refractor.highlight(value, lang)
+    if (lang !== 'text') {
+      data.hChildren = refractor.highlight(value, lang)
+    }
     data.hProperties.className = [
       ...(data.hProperties.className || []),
       `language-${lang}`

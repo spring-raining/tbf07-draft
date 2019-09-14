@@ -1,9 +1,30 @@
 @import './variables.scss';
 
+:root {
+  font-family: $font-family;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
 h1,
 h2,
 h3 {
   font-feature-settings: 'palt';
+}
+
+h1 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.2;
 }
 
 a {
@@ -21,21 +42,87 @@ a:hover {
 }
 
 p {
-  font-feature-settings: 'palt';
+  // font-feature-settings: 'palt';
+  text-align: justify;
 }
 
-.footnote-ref {
-  text-decoration: none;
+code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', $font-family !important;
+}
 
-  &:visited {
-    color: $color_blue;
-  }
+pre {
+  box-decoration-break: clone;
+}
 
-  &::before {
-    content: '[';
-  }
+ul, ol {
+  padding-inline-start: 1.5em;
+}
 
-  &::after {
-    content: ']';
+figure {
+  margin: 1.5rem auto;
+  text-align: center;
+  img {
+    max-width: 100%;
+    margin: 0.5rem auto;
   }
+  figcaption {
+    margin: 1rem auto;
+    width: 90%;
+    font-size: 90%;
+  }
+  &.fig {
+    break-inside: avoid;
+  }
+  img[src$='.png'],
+  img[src$='.jpg'],
+  img[src$='.jpeg'] {
+    image-resolution: 200dpi;
+  }
+}
+
+table {
+  display: table;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-color: $color_black;
+  border-collapse: collapse;
+  th, td {
+    padding: .2em .2em .2em 0;
+    &:first-child {
+      padding-left: .2em;
+    }
+    background-color: transparent;
+    border: 0;
+  }
+  th {
+    border-top: 1px solid $color_black;
+    border-bottom: 1px solid $color_black;
+  }
+  tr {
+    // border-bottom: .5px solid
+    $narrow-border-width: .4px;
+    box-shadow: 0 $narrow-border-width+.3px 0 -.3px $color_black;
+  }
+  tr:last-child {
+    border-bottom: 1px solid $color_black;
+  }
+}
+
+blockquote {
+  margin: 1em 1.5rem;
+  background-color: $color_silver;
+  padding: 0.5em 1em;
+  border-radius: 0.2rem;
+  :not(pre) > code {
+    padding: 0;
+    word-break: break-all;
+  }
+}
+
+.draft-author {
+  text-align: right;
+}
+
+.page-break {
+  page-break-after: always !important;
 }

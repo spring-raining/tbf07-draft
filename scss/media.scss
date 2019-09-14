@@ -13,6 +13,7 @@
   }
   article {
     margin: 0 auto;
+    margin-top: 8rem;
     max-width: 60rem;
   }
   section {
@@ -27,6 +28,7 @@
     vertical-align: super;
     background-color: rgba(214, 255, 0, 0.4);
     margin: 0 0.1rem;
+    line-height: 0;
   }
 
   a[data-ref='sec'],
@@ -59,7 +61,7 @@
     widows: 3;
     orphans: 3;
     hyphens: auto;
-    font-size: 0.75;
+    font-size: $master-font-size-for-print;
   }
 
   h1,
@@ -71,18 +73,48 @@
     break-after: avoid;
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
   tr,
   th,
   td {
     break-inside: avoid;
+  }
+
+  article > h1 {
+    margin-top: -8mm;
+  }
+
+  pre[class*='language-'] {
+    font-size: 90%;
+    text-overflow: ellipsis;
+  }
+
+  table {
+    font-size: 80%;
+  }
+
+  .footnote {
+    float: footnote;
   }
 }
 
 @page {
   size: $page-width $page-height;
   margin-top: $page-margin-top;
+  padding-top: 15mm;
   margin-bottom: $page-margin-bottom - 6mm;
-  marks: crop cross;
+  // marks: crop cross;
 
   @top-left-corner {
     @include page-top-style();
@@ -155,12 +187,16 @@
 
   @top-center {
     content: env(pub-title);
+    font-family: $font-family;
+    font-size: $master-font-size-for-print;
     color: $color_white;
     text-align: left;
     padding-top: 12mm;
   }
   @bottom-left {
     content: counter(page);
+    font-family: $font-family;
+    font-size: $master-font-size-for-print;
     border-left: 1px solid;
     margin-top: 15mm;
     margin-bottom: -$page-bleed;
@@ -175,12 +211,16 @@
 
   @top-center {
     content: env(doc-title);
-    color: white;
+    font-family: $font-family;
+    font-size: $master-font-size-for-print;
+    color: $color_white;
     text-align: right;
     padding-top: 12mm;
   }
   @bottom-right {
     content: counter(page);
+    font-family: $font-family;
+    font-size: $master-font-size-for-print;
     border-right: 1px solid;
     margin-top: 15mm;
     margin-bottom: -$page-bleed;
@@ -194,4 +234,7 @@
   margin-inline-start: -1000px;
   margin-inline-end: 70%;
   margin-block-end: 0.8em;
+}
+@-adapt-footnote-area {
+  word-break: break-all;
 }

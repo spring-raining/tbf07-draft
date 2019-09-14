@@ -6,9 +6,9 @@ author:
 
 # Vivliostyleで縦組シナリオを組版する
 
-__小形克宏（電脳マヴォ合同会社）[^1]__
-
-[^1]:  https://www.mavo.co.jp/
+<div class="draft-author">
+小形克宏（電脳マヴォ合同会社）<span class="footnote" style="text-align: left;"><a href="https://www.mavo.co.jp/">https://www.mavo.co.jp/</a></span>
+</div>
 
 ## はじめに
 
@@ -44,7 +44,7 @@ __小形克宏（電脳マヴォ合同会社）[^1]__
 
 ## InDesignで仮組みしてみる
 
-こうしてシナリオ組版のアルゴリズムは分かった。しかしここでいきなり不馴れな HTML+CSS に挑戦するのは、私には敷居が高すぎる。そこで、まず手慣れた InDesign でテスト組版をすることにした。いろいろ試した結果、あらかじめ役名とセリフをタブで区切っておいたテキストに対し、次のような段落スタイルを適用することで実現できることが分かった（[@fig:fig_4]）。
+こうしてシナリオ組版のアルゴリズムは分かった。しかしここでいきなり不馴れな HTML + CSS に挑戦するのは、私には敷居が高すぎる。そこで、まず手慣れた InDesign でテスト組版をすることにした。いろいろ試した結果、あらかじめ役名とセリフをタブで区切っておいたテキストに対し、次のような段落スタイルを適用することで実現できることが分かった（[@fig:fig_4]）。
 
 ![シナリオ組版を実現するInDesignの段落スタイル設定](fig_4.png)
 
@@ -76,11 +76,17 @@ p {
 調べると `white-space` というプロパティがあることが分かった。これを使えばソース中のタブ等をそのまま表示してくれるらしい。そこで HTML の `p` 要素に対し、以下のように指定した。
 
 ```html
-<p style="white-space: pre;"><strong>廃止A</strong>	…80年代には3つの再審が行われて、三人の確定死刑囚が冤罪だったと認定されました。ところがそれ以降、再審はほとんどない。袴田巌さんの再審も認められない。明らかにおかしい。冤罪の死刑囚はたくさんいるはずです。</p>
-<p style="white-space: pre;"><strong>存置B</strong>	ちょっと待って。冤罪の危険性は死刑だけではなくて、他の刑罰にも常にあるよ。別に死刑制度だけの問題じゃない。</p>
+<p style="white-space: pre;">
+  <strong>廃止A</strong>
+  …80年代には3つの再審が行われて、三人の確定死刑囚が冤罪だったと認定されました。ところがそれ以降、再審はほとんどない。袴田巌さんの再審も認められない。明らかにおかしい。冤罪の死刑囚はたくさんいるはずです。
+</p>
+<p style="white-space: pre;">
+  <strong>存置B</strong>
+  ちょっと待って。冤罪の危険性は死刑だけではなくて、他の刑罰にも常にあるよ。別に死刑制度だけの問題じゃない。
+</p>
 ```
 
-これをブラウザで表示させたのが以下のものだ（[@fig:fig_7]]）。
+これをブラウザで表示させたのが以下のものだ（[@fig:fig_7]）。
 
 ![white-spaceプロパティを使ったHTMLの表示結果。行が折り返されなくなってしまった](fig_7.png)
 
@@ -95,7 +101,6 @@ p {
 困ったな、なんとかならないっすかね、と slack で泣きついたら、Vivliostyle の開発者・村上真雄さんから、速攻で以下のようなアドバイスをいただいた（以下、村上 CSS と略）。
 
 > - style= “white-space: pre;” は削除
->
 > - 役名（ `<strong>` タグ）ではじまるセリフの段落を他の段落と区別できるように `class` をつける
 > - CSSでセリフの段落に対し、以下のように指定
 
@@ -166,9 +171,18 @@ p {
 では、論理プロパティではどう実現するか。まずト書き等と区別するため、あらかじめ HTML で指定したい箇所を `class` で定義しておく（ここでは `class` 名を “line” とした。もちろんこれは物理プロパティでも必要）。
 
 ```html
-<p class="line"><strong>存置<span class="text-combine">B</span></strong>それはメディアの問題です。</p>
-<p class="line"><strong>存置<span class="text-combine">A</span></strong>争点をずらしているよ。</p>
-<p class="line"><strong>片桐</strong>遺族の気持ちを死刑の理由にするならば、もしも天涯孤独の人が殺されたとき、遺族はいないからその罪は軽くなります。それでいいのですか。</p>
+<p class="line">
+  <strong>存置<span class="text-combine">B</span></strong>
+  それはメディアの問題です。
+</p>
+<p class="line">
+  <strong>存置<span class="text-combine">A</span></strong>
+  争点をずらしているよ。
+</p>
+<p class="line">
+  <strong>片桐</strong>
+  遺族の気持ちを死刑の理由にするならば、もしも天涯孤独の人が殺されたとき、遺族はいないからその罪は軽くなります。それでいいのですか。
+</p>
 ```
 
 そのうえで、CSS で “line” ブロック全体の左／上余白を 6em に指定する。
@@ -226,17 +240,25 @@ p.line > strong:first-child {
 
 [^8]: https://github.com/vivliostyle/vivliostyle_doc/blob/gh-pages/samples/shirouma/style.css
 
+![縦組なのにアルファベットが横転している](fig_12.png)
+
 大筋としては `class` 名を HTML と CSS とで合わせ、不要な記述があればばっさり削除していく。前項まで検討してきた役名+セリフ部分のプロパティも忘れずに書き加えておこう。
 
-他に縦組特有の作業として、「縦中横」の指定が必要だ。これを指定しないと以下のようにアルファベットや数字だけが横転してしまう（[@fig:12]）。
+他に縦組特有の作業として、「縦中横」の指定が必要だ。これを指定しないと以下のようにアルファベットや数字だけが横転してしまう（[@fig:fig_12]）。
 
-![縦組なのにアルファベットが横転している](fig_12.png)
+<div class="page-break"></div>
 
 まず、HTML で縦中横にする文字を `span` 要素で囲み、`class`指定をしておく。『白馬岳』の “style.css” では `class` 名を `text-combine` としているので、これを生かして HTML で以下のように指定する。
 
 ```html
-<p class="line"><strong>存置<span class="text-combine">B</span></strong>それはメディアの問題です。</p>
-<p class="line"><strong>存置<span class="text-combine">A</span></strong>争点をずらしているよ。</p>
+<p class="line">
+  <strong>存置<span class="text-combine">B</span></strong>
+  それはメディアの問題です。
+</p>
+<p class="line">
+  <strong>存置<span class="text-combine">A</span></strong>
+  争点をずらしているよ。
+</p>
 ```
 
 『白馬岳』の “style.css” では、以下のように縦中横を実現する `text-combine-upright` プロパティが指定されている。
@@ -247,9 +269,10 @@ p.line > strong:first-child {
 }
 ```
 
-ちなみにこの “style.css” は書かれたのが少し古いようで、ベンダープレフィックスがついた複数の縦中横用プロパティも記述されている。しかし、現在の Vivliostyle はブラウザによって必要なプレフィックスを自動補完してくれるので、`text-combine-upright`プロパティ以外は削除した。さあ、ここまでをブラウザで表示させてみよう（[@fig:fig_13]）。
 
 ![アルファベットが正立した。これが「縦中横」だ](fig_13.png)
+
+ちなみにこの “style.css” は書かれたのが少し古いようで、ベンダープレフィックスがついた複数の縦中横用プロパティも記述されている。しかし、現在の Vivliostyle はブラウザによって必要なプレフィックスを自動補完してくれるので、`text-combine-upright`プロパティ以外は削除した。さあ、ここまでをブラウザで表示させてみよう（[@fig:fig_13]）。
 
 うまくいったようだ。あとは本文や見出しのフォントを調整して出来あがりだ（[@fig:fig_14]）。
 

@@ -1,3 +1,4 @@
+@import './font.scss';
 @import './lib-prism-okaidia.scss';
 @import './lib-override.scss';
 @import './base.scss';
@@ -5,3 +6,48 @@
 @import './media.scss';
 @import './cover.scss';
 @import './toc.scss';
+
+
+#vivliostyleで縦組シナリオを組版する {
+  & ~ figure#fig_1 img,
+  & ~ figure#fig_9 img,
+  & ~ figure#fig_10 img,
+  & ~ figure#fig_11 img {
+    width: 85%;
+  }
+  & ~ figure#fig_4 img {
+    width: 70%;
+  }
+  & ~ figure#fig_6 img,
+  & ~ figure#fig_7 img,
+  & ~ figure#fig_12 img,
+  & ~ figure#fig_13 img {
+    box-shadow: 0 3px 14px 0 #cccccc;
+    border-radius: 0.2rem;
+  }
+
+  & ~ figure#fig_12,
+  & ~ figure#fig_13 {
+    width: 30%;
+    float: right;
+    float: snap-block;
+    float-reference: page;
+    img {
+        width: 40%;
+    }
+  }
+}
+
+#epubファイルからvivliostyleでpdfを作りたい！ {
+  & ~ figure#image002 img,
+  & ~ figure#image009 img {
+    width: 80%;
+  }
+  & ~ figure#image003 img,
+  & ~ figure#image004 img {
+    width: 70%;
+  }
+  & ~ figure#image005 img {
+    width: 40%;
+ }
+}

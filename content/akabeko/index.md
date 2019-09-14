@@ -6,6 +6,10 @@ author:
 
 # CSS で View を定義する意義
 
+<div class="draft-author">
+akabeko
+</div>
+
 アプリケーションや文書の View (外観) を定義する技術として見た、CSS の意義と期待について。
 
 ## アプリケーション
@@ -57,10 +61,10 @@ Web を除くデスクトップやモバイル向けのアプリケーション�
 
 Web ブラウザーがそうであったようにプラットフォーム ベンダー間で開発環境に対する協調がおこなわれればよいのだが、それは難しいだろう。一方、このような状況を踏まえて Web 由来の技術をアプリケーション開発へ転用する動きもある。以下は代表的なもの。
 
-- [Apache Cordova](https://cordova.apache.org/)
-- [React Native](https://facebook.github.io/react-native/)
-- [Electron](https://electronjs.org/)
-- [PWA (Progressive Web Apps)](https://developer.mozilla.org/en-US/docs/Web/)
+- Apache Cordova[^ https://cordova.apache.org/]
+- React Native[^ https://facebook.github.io/react-native/]
+- Electron[^ https://electronjs.org/]
+- PWA (Progressive Web Apps)[^ https://developer.mozilla.org/en-US/docs/Web/]
 
 PWA を除き、他はネイティブ機能を呼び出す仕組みを提供している。そのためパフォーマンス問題に目をつぶれば、実質的に Web 技術でクロス プラットフォーム開発可能となる。もちろん View も CSS となるため運用と学習コストも低減されるだろう。
 
@@ -82,8 +86,8 @@ Yoga は CSS の Flexbox 的なレイアウトを実現するクロスプラッ�
 
 規格については
 
-- [JIS X 4051:2004 日本語文書の組版方法 | 日本規格協会 JSA Group Webdesk](https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS%20X%204051:2004)
-- [日本語組版処理の要件 (JLREQ)](https://www.w3.org/TR/jlreq/ja/)
+- JIS X 4051:2004 日本語文書の組版方法 | 日本規格協会 JSA Group Webdesk[^ https://webdesk.jsa.or.jp/books/W11M0090/index/?bunsyo_id=JIS%20X%204051:2004]
+- 日本語組版処理の要件 (JLREQ)[^ https://www.w3.org/TR/jlreq/ja/]
 
 などがある。では組版ソフトウェアの対応状況はいかほどか。Web でいう [Can I use](https://caniuse.com/) のようなサイトは存在しないようなので Google 検索や各種公式サイトから、ざっくりと調べてみた。
 
@@ -99,9 +103,9 @@ Yoga は CSS の Flexbox 的なレイアウトを実現するクロスプラッ�
 
 関連する動きとして JLREQ と CSS 関連に注目している。
 
-- [w3c/jlreq](https://github.com/w3c/jlreq)
-- [JLREQ と CSS（1） | 電書魂](http://densyodamasii.com/?p=3222)
-- [JLREQ と CSS（2） | 電書魂](http://densyodamasii.com/?p=3258)
+- w3c/jlreq[^ https://github.com/w3c/jlreq]
+- JLREQ と CSS（1） | 電書魂[^ http://densyodamasii.com/?p=3222]
+- JLREQ と CSS（2） | 電書魂[^ http://densyodamasii.com/?p=3258]
 
 これは Web ブラウザーやその技術を転用した EPUB 上で適切な組版を再現するための試みであると同時に、組版規格を共通のソフトウェア資産として定義・検証可能にするための絶好の機会ではなかろうか。
 

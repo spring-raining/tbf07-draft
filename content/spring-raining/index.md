@@ -6,6 +6,10 @@ author:
 
 # Remark で広げる Markdown の世界
 
+<div class="draft-author">
+spring-raining
+</div>
+
 はじめましてこんにちは、はるさめです。本誌は名目上 Vivliostyle について紹介する同人誌なのですが、またしても空気を読まず Vivliostyle ではない OSS プロジェクト「**Remark**」について紹介したいと思います。
 
 ## Remark

@@ -25,18 +25,14 @@ function figId(path: string, maintainCase = true) {
  * @see https://github.com/syntax-tree/mdast-util-to-hast/blob/master/lib/handlers/code.js
  */
 export const code = (h: any, node: any) => {
-  const value = node.value ? `${node.value}\\n` : ''
-  const lang = node.lang && node.lang.match(/^[^ \t]+(?=[ \t]|$)/)
+  const value = node.value || ''
+  const lang = node.lang ? node.lang.match(/^[^ \t]+(?=[ \t]|$)/) : 'text'
 
-  if (lang) {
-    // `Prism.js` also requires language specification for `<pre>`
-    const props = { className: ['language-' + lang] }
-    return h(node.position, 'pre', props, [
-      h(node, 'code', props, [u('text', value)])
-    ])
-  } else {
-    return h(node.position, 'pre', [h(node, 'code', {}, [u('text', value)])])
-  }
+  // `Prism.js` also requires language specification for `<pre>`
+  const props = { className: ['language-' + lang] }
+  return h(node.position, 'pre', props, [
+    h(node, 'code', props, [u('text', value)])
+  ])
 }
 
 /**

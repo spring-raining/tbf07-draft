@@ -9,7 +9,8 @@ pre[class*='language-'] {
   text-shadow: none !important;
 }
 :not(pre) > code {
-  padding: 0.1rem 0.3rem !important;
-  color: $color_black;
+  padding: 0.2rem 0.4rem;
   background-color: $color_silver;
+  border-radius: 0.2rem;
+  line-height: 1;
 }

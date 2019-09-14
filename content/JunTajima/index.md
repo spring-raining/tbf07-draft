@@ -6,7 +6,9 @@ author:
 
 # EPUBファイルからVivliostyleでPDFを作りたい！
 
-__田嶋　淳（@JunTajima）http://densyodamasii.com/__
+<div class="draft-author">
+田嶋　淳（@JunTajima）<span class="footnote" style="text-align: left;"><a href="http://densyodamasii.com/">http://densyodamasii.com/</a></span>
+</div>
 
 　印刷 DTP データからの EPUB 作成の仕事を長年やっていて、ずっと解決できないでいた悩みがあった。それは、__「EPUB を PDF に出力すること」__である。Web 方面の人はなぜそんなことが必要なのか不思議に思うかもしれない。それは　__「出版社に内容を確認してもらうため」__に必要になるのだ（「検収」と呼ぶ）。もちろんわれわれ制作者は、できる限り元データの情報を失わない形で電子化をするのだけど、だからといってチェックもせずにそのまま販売はできない。そしてチェックのためには、__できるだけ元の本の版面に近い形で EPUB を表示させ、それを元の本と見比べる__必要が出てくる。出版社によっては外部の校正者に依頼するケースもあるから、可能ならプリントできる PDF 形式の変換データも渡すことが必要になってくるのだ。
 　ところが長いことこれが随分難しい話だった。__商業用 EPUB ビューアには例外なく「印刷の機能がない」__からだ。理由はまあ明確で、もし購入した電子本を印刷の機能を使って PDF にできてしまえば、それはすなわち__海賊版の作成補助になってしまう__からだ。これはどこの出版社も納得しないだろうからまあ仕方ない。
@@ -40,33 +42,31 @@ __田嶋　淳（@JunTajima）http://densyodamasii.com/__
 
 　Vivliostyle の公式説明では Node.JS を使うことになっていたのだが、Node.JS 自体のインストールを個々のマシンで行わなければならない上に、インストールで少々手こずってしまい、結果的に村上さんにアドバイスをいただいて Python のコマンドを使って解決した。Python ならば Mac に標準で入っているのでその方がむろん望ましい。
 
-　手順としては単純で、Mac に標準で入っている__「ターミナル」上で「python -m SimpleHTTPServer 8000」のコマンドを打ち込むだけ__だ。これだけでポート 8000 を対象としてローカルサーバが起動する。次の画面のようになっていれば OK。
+　手順としては単純で、Mac に標準で入っている__「ターミナル」上で「`python -m SimpleHTTPServer 8000`」のコマンドを打ち込むだけ__だ。これだけでポート 8000 を対象としてローカルサーバが起動する。次の画面のようになっていれば OK。
 
 ![ローカルサーバが起動](image001.png)
 
 ### 2. Vivliostyle Viewerをローカルで起動
 
-　さて、無事ローカルサーバが立ち上がったら、その上でローカルのフォルダ内にある Vivliostyle Viewer を動かしてやる。例えばダウンロードしてきた vivliostyle-js-2019.1.105 のフォルダが Mac のデスクトップ上の vivliostyle_test フォルダに置かれているなら、URL 指定は以下のような形になる。
+　さて、無事ローカルサーバが立ち上がったら、その上でローカルのフォルダ内にある Vivliostyle Viewer を動かしてやる。例えばダウンロードしてきた `vivliostyle-js-2019.1.105` のフォルダが Mac のデスクトップ上の `vivliostyle_test` フォルダに置かれているなら、URL 指定は以下のような形になる。
 
-
-http://localhost:8000/Desktop/vivliostyle_test/vivliostyle-js-2019.1.105/viewer/vivliostyle-viewer.html
-
+> `http://localhost:8000/Desktop/vivliostyle_test/vivliostyle-js-2019.1.105/viewer/vivliostyle-viewer.html`
 
 　これをブラウザのアドレスバーに入力して無事に Vivliostyle Viewer の画面が表示されればひとまずは成功。
 
 ![Vivliostyle Viewerが表示された](image002.png)
 
-　デスクトップにフォルダを置きたくないというのであれば、「Documents」が Mac のログインユーザの「書類」フォルダに当たるようなのでそちらでもいいだろう。今どんなフォルダがサーバ上から見えているのかを知りたければ、__「localhost:8000」__とだけアドレスバーに入れてやればリストが出てくるはず。
+　デスクトップにフォルダを置きたくないというのであれば、「Documents」が Mac のログインユーザの「書類」フォルダに当たるようなのでそちらでもいいだろう。今どんなフォルダがサーバ上から見えているのかを知りたければ、__「`localhost:8000`」__とだけアドレスバーに入れてやればリストが出てくるはず。
 
 ![フォルダ一覧](image003.png)
 
 ### 3. テストファイルをVivliostyleで表示
 
-　さてそれではいよいよ EPUB ファイルを Vivliostyle 上で表示してみる。手順 2 の Vivliostyle Viewer の URL の後に__「#b=」__を書き、「http://localhost:8000」の後に表示ファイルのパスを指定してやればよい。EPUB表示の場合は解凍したEPUBフォルダのパスを指定するか、あるいはEPUB内.opfファイルのパスを指定してやればOKだ。
+　さてそれではいよいよ EPUB ファイルを Vivliostyle 上で表示してみる。手順 2 の Vivliostyle Viewer の URL の後に__「`#b=`」__を書き、「`http://localhost:8000`」の後に表示ファイルのパスを指定してやればよい。EPUB表示の場合は解凍したEPUBフォルダのパスを指定するか、あるいはEPUB内.opfファイルのパスを指定してやればOKだ。
 
-　例えばデスクトップの vivliostyle_test フォルダ内に置いた testepubfolder を表示させたいのなら
+　例えばデスクトップの `vivliostyle_test` フォルダ内に置いた `testepubfolder` を表示させたいのなら
 
-http://localhost:8000/Desktop/vivliostyle_test/vivliostyle-js-2019.1.105/viewer/vivliostyle-viewer.html#b=http://localhost:8000/Desktop/vivliostyle_test/testepubfolder/item/standard.opf
+> `http://localhost:8000/Desktop/vivliostyle_test/vivliostyle-js-2019.1.105/viewer/vivliostyle-viewer.html#b=http://localhost:8000/Desktop/vivliostyle_test/testepubfolder/item/standard.opf`
 
 　のような記述になる。これで無事に EPUB が表示されれば成功だ。
 
@@ -80,48 +80,48 @@ http://localhost:8000/Desktop/vivliostyle_test/vivliostyle-js-2019.1.105/viewer/
 
 　今回はページ番号の表示のために以下の内容を追記した。
 
-```
+```css
 @page :left {
-margin-right: 10mm;
-@bottom-left {
-content: counter(page);
-margin-left: 5pt;
-margin-bottom: 6mm;
-writing-mode: horizontal-tb;
-font-weight: normal;
-font-family: serif-ja, serif;
-}
+  margin-right: 10mm;
+  @bottom-left {
+    content: counter(page);
+    margin-left: 5pt;
+    margin-bottom: 6mm;
+    writing-mode: horizontal-tb;
+    font-weight: normal;
+    font-family: serif-ja, serif;
+  }
 }
 @page :right {
-margin-left: 10mm;
-@bottom-right {
-content: counter(page);
-margin-right: 5pt;
-margin-bottom: 6mm;
-writing-mode: horizontal-tb;
-font-weight: normal;
-font-family: serif-ja, serif;
-}
+  margin-left: 10mm;
+  @bottom-right {
+    content: counter(page);
+    margin-right: 5pt;
+    margin-bottom: 6mm;
+    writing-mode: horizontal-tb;
+    font-weight: normal;
+    font-family: serif-ja, serif;
+  }
 }
 @page :first {
-@bottom-left {
-content: '';
-}
-@top-left {
-content: '';
-}
+  @bottom-left {
+    content: '';
+  }
+  @top-left {
+    content: '';
+  }
 }
 ```
 
-　最後の「@page :first」のブロックは 1 ページ目は書影なので番号を入れたくないから消しているだけなので、気にしないなら入れなくてもよいだろう。
+　最後の「`@page :first`」のブロックは 1 ページ目は書影なので番号を入れたくないから消しているだけなので、気にしないなら入れなくてもよいだろう。
 
 　同時に、環境設定メニューでチェックボックスをいくつかチェックしてやる。全ページレンダリング読み込み指定の__「Render All Pages」__と、画像表示最適化の__「Set image max-size to fit page」__および__「Keep aspect ratio」__だ。最終的に PDF 化するのが目的なので全ページ出てくれないと困るし、画像表示最適化のチェックを入れておかないと画像がページ内にきちんと収まってくれなかったりする。
 
-　![追加でチェックボッススをチェック](image006.png)
+![追加でチェックボックスをチェック](image006.png)
 
 　__最後に「Apply」をクリックして設定を適用__してやり、無事にページ番号が表示されていれば OK。
 
-　![ページ番号が表示された](image007.png)
+![ページ番号が表示された](image007.png)
 
 ### 5. プリントしてPDFを出力
 
@@ -137,9 +137,7 @@ content: '';
 
 ![Perlで自動化](image009.png)
 
-https://github.com/JunTajima/epubVivliostylePreview.pl/blob/master/epubVivliostylePreview.pl
-
-　まあ一応ソースコードを載せておくけれど、実際大したことはしていない。
+　まあ一応ソースコードを載せておくけれど、実際大したことはしていない。[^ https://github.com/JunTajima/epubVivliostylePreview.pl/blob/master/epubVivliostylePreview.pl]
 
 ```perl
 ######vivliostyleフォルダ、表示するepubファイルの順でパスを指定するとepubファイルをVivliostyleで起動する。Mac専用。######
@@ -188,7 +186,7 @@ my $openVivliostyleCmd = 'osascript -e \'tell application "Google Chrome" to ope
 system $openVivliostyleCmd;
 ```
 
-　使い方はターミナルで __「$ perl スクリプトファイルのパス Vivliostyle のパッケージのパス EPUB ファイルのパス」__の順番で指定してやれば、自動でローカルサーバを起動し、Chrome の画面に Vivliostyle を使って EPUB を表示する。
+　使い方はターミナルで __「`$ perl スクリプトファイルのパス Vivliostyle のパッケージのパス EPUB ファイルのパス`」__の順番で指定してやれば、自動でローカルサーバを起動し、Chrome の画面に Vivliostyle を使って EPUB を表示する。
 
 　注意点としては
 - 展開後の EPUB フォルダではなく展開前の EPUB ファイルを指定
