@@ -6,33 +6,33 @@ author:
 
 # Vivliostyle のこれからの開発課題
 
-先日のイベント〈**Vivliostyle 開発者とユーザーの集い 2019夏**〉[^1] の《第1部》開発者ミーティング「**Vivliostyle開発のこれまでと、これからへ**」[^2]で、Vivliostyle.js ソースコードの TypeScript 化が完了したことで今後の開発が楽になったことと、開発課題(issue)を課題カテゴリーごとのプロジェクトに整理して GitHub Projects[^3] で管理するようにしたことを説明して、ミーティング参加者（30名くらい）にどのプロジェクトが重要か聞きました（複数回答）。結果は以下：
+先日のイベント〈**Vivliostyle 開発者とユーザーの集い 2019 夏**〉[^1] の《第 1 部》開発者ミーティング「**Vivliostyle 開発のこれまでと、これからへ**」[^2]で、Vivliostyle.js ソースコードの TypeScript 化が完了したことで今後の開発が楽になったことと、開発課題(issue)を課題カテゴリーごとのプロジェクトに整理して GitHub Projects[^3] で管理するようにしたことを説明して、ミーティング参加者（30 名くらい）にどのプロジェクトが重要か聞きました（複数回答）。結果は以下：
 
-- Bugs（レイアウトの不具合など直す）: 7人
-- PDF printing（PDF出力および印刷に関する問題を解決する）: 7人
-- Input formats（多様な入力文書フォーマットのサポート）: 7人
-- Paged media（CSSページメディア関連仕様のサポート）: 15人
-- Typography（文字組版関連CSS仕様サポート）: 8人
-- Layout enhancement（高度なレイアウトのCSS仕様サポート）: 10人
-- Web standards（Web標準仕様のサポート）: 7人
+- Bugs（レイアウトの不具合など直す）: 7 人
+- PDF printing（PDF 出力および印刷に関する問題を解決する）: 7 人
+- Input formats（多様な入力文書フォーマットのサポート）: 7 人
+- Paged media（CSS ページメディア関連仕様のサポート）: 15 人
+- Typography（文字組版関連 CSS 仕様サポート）: 8 人
+- Layout enhancement（高度なレイアウトの CSS 仕様サポート）: 10 人
+- Web standards（Web 標準仕様のサポート）: 7 人
 - Other improvements（その他の改良）:
-  - Improved error handling (エラー処理改良): 5人
-  - UI multilingualization（UIの多言語化）: 3人
-  - Search function（Viewerに検索機能）: 3人
-  - Chrome extension（Chromeブラウザ拡張）: 6人
-  - Documentation（ドキュメントの充実）: 12人
+  - Improved error handling (エラー処理改良): 5 人
+  - UI multilingualization（UI の多言語化）: 3 人
+  - Search function（Viewer に検索機能）: 3 人
+  - Chrome extension（Chrome ブラウザ拡張）: 6 人
+  - Documentation（ドキュメントの充実）: 12 人
 
-[^1]: Vivliostyle 開発者とユーザーの集い 2019夏 開催しました！ https://vivliostyle.org/ja/blog/2019/09/04/vivliostyle-dev-user-meetup-tokyo20190831/
-[^2]: 「Vivliostyle開発のこれまでと、これからへ」 http://bit.ly/vivdev20190831
+[^1]: Vivliostyle 開発者とユーザーの集い 2019 夏開催しました！ https://vivliostyle.org/ja/blog/2019/09/04/vivliostyle-dev-user-meetup-tokyo20190831/
+[^2]:「Vivliostyle開発のこれまでと、これからへ」http://bit.ly/vivdev20190831
 [^3]: https://github.com/vivliostyle/vivliostyle.js/projects/
 
-この結果を見てわかるのは、どのプロジェクトもそれぞれ重要だけど、特にCSSページメディア関連仕様や高度なレイアウトのCSS仕様のサポートを拡充することへの期待が高いということです。それからドキュメントの充実ということも。
+この結果を見てわかるのは、どのプロジェクトもそれぞれ重要だけど、特に CSS ページメディア関連仕様や高度なレイアウトの CSS 仕様のサポートを拡充することへの期待が高いということです。それからドキュメントの充実ということも。
 
 これを踏まえて今後、とくに要望が多い項目を意識しながらも、どのプロジェクトも進めていきたいところです。とはいうものの、どれもそんなに簡単なプロジェクトではありません。もっと**皆様の協力が得られることが必要**であるし、そのためには、その課題について理解を広めなければと思います。そこで、各プロジェクトの主な課題について、解説します。
 
 ## Bugs（レイアウトの不具合など直す）
 
-現在、約30数件のバグが残っています。プログラムの誤りや、実装が不十分であるために期待されるレイアウトにならないなどです。バグというより現在の実装での制限事項であって解決には本格的な処理の見直し・再設計が必要という問題は別のプロジェクトに割り振っているので、ここにあるのは比較的単純な問題です。
+現在、約 30 数件のバグが残っています。プログラムの誤りや、実装が不十分であるために期待されるレイアウトにならないなどです。バグというより現在の実装での制限事項であって解決には本格的な処理の見直し・再設計が必要という問題は別のプロジェクトに割り振っているので、ここにあるのは比較的単純な問題です。
 
 そのいくつか：
 
@@ -50,16 +50,16 @@ author:
 
 ## PDF printing（PDF出力および印刷に関する問題を解決する）
 
-現状はブラウザのPDF出力に依存するため、これらの問題があります。
+現状はブラウザの PDF 出力に依存するため、これらの問題があります。
 
 - [#437: please use CID instead of Type3](https://github.com/vivliostyle/vivliostyle.js/issues/437)
   - **問題**：Chrome ブラウザの「PDF に保存」で PDF を生成すると、OpenType/CFF フォントが Type3 フォントとして埋め込まれる。これでは印刷に向かない。
-  - **代替手段その1**：TrueType フォントのみを使用する。
-  - **代替手段その2**：Chrome 以外のブラウザ（Safari や Firefox）を使用する。
-  - **代替手段その3（PDF の後処理で解決）**：Vivliostyle + Chrome ブラウザで出力した PDF を Mac の「プレビュー」アプリで開いてファイルメニューの「書き出す」で「フォーマット: PDF」「Quartzフィルタ: Create Generic PDFX-3 Document」で別の PDF に書き出すと Type3 フォントの埋め込みの代わりに、テキストがグラフィック（アウトライン）に変換される。テキストデータを取り出せない PDF になるが、印刷には使える。
+  - **代替手段その 1**：TrueType フォントのみを使用する。
+  - **代替手段その 2**：Chrome 以外のブラウザ（Safari や Firefox）を使用する。
+  - **代替手段その 3（PDF の後処理で解決）**：Vivliostyle + Chrome ブラウザで出力した PDF を Mac の「プレビュー」アプリで開いてファイルメニューの「書き出す」で「フォーマット: PDF」「Quartz フィルタ: Create Generic PDFX-3 Document」で別の PDF に書き出すと Type3 フォントの埋め込みの代わりに、テキストがグラフィック（アウトライン）に変換される。テキストデータを取り出せない PDF になるが、印刷には使える。
 - [#429: support PDF standard](https://github.com/vivliostyle/vivliostyle.js/issues/429)
   - **要望**：印刷用の PDF の標準である PDF/X-1a や PDF/X-4 をサポートしてほしい。
-  - **代替手段（PDF の後処理で解決）**：前項の「代替手段その3」でできた PDF を Acrobat Pro で開き、「プリフライト: PDF/X に変換」で「PDF/X-1a (Japan Color 2001 Coated) に変換」など選んで変換すると、PDF/X-1a 準拠の PDF になります。
+  - **代替手段（PDF の後処理で解決）**：前項の「代替手段その 3」でできた PDF を Acrobat Pro で開き、「プリフライト: PDF/X に変換」で「PDF/X-1a (Japan Color 2001 Coated) に変換」など選んで変換すると、PDF/X-1a 準拠の PDF になります。
 - [#419: Minimum width of borders is too thick](https://github.com/vivliostyle/vivliostyle.js/issues/419)
   - **問題**：Chrome ブラウザで PDF 出力すると border の最小幅は 1px = 0.75pt = 0.265mm で、border がそれより細くならない。
 - [#418: Add TrimBox and BleedBox to output PDF](https://github.com/vivliostyle/vivliostyle.js/issues/418)
@@ -74,7 +74,7 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
 - [#541: Support non-unzipped EPUB loading](https://github.com/vivliostyle/vivliostyle.js/issues/541)
   - **要望**：EPUB ファイルを直接（解凍していなくても）ロードできるようにしてほしい。
 - [#524: Vexflow and vextab](https://github.com/vivliostyle/vivliostyle.js/issues/524)
-  - **要望**：HTML上で楽譜を表示するための API と簡易言語である VexFlow と VexTab をサポートしてほしい。
+  - **要望**：HTML 上で楽譜を表示するための API と簡易言語である VexFlow と VexTab をサポートしてほしい。
 - [#168: Let authors use their own MathJax configuration](https://github.com/vivliostyle/vivliostyle.js/issues/168)
   - **要望**：数式を表示するのに使用される MathJax の設定を制作者側でカスタマイズできるようにしてほしい。
 
@@ -89,11 +89,11 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **代替手段**：現在の Vivliostyle では、複数の HTML 文書で構成される本の場合は、`env(pub-title)`、`env(doc-title)` で本のタイトル（メインの HTML のタイトル）と個別 HTML 文書のタイトルをそれぞれ出力できる。
 - [#424: Support for running elements?](https://github.com/vivliostyle/vivliostyle.js/issues/424)
   - **要望**：本文中の見出しの要素をページマージン領域に柱（欄外見出し）として表示できるようにする機能。string-set が単純なテキストだけ扱えるのに対して、こちらは HTML 要素を扱える。
-  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置することができる。
+  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置できる。
 - [#425: Support for named pages?](https://github.com/vivliostyle/vivliostyle.js/issues/425)
   - **要望**：ページの種類（例：扉、序文、本文、奥付、など）ごとに名前付きのページのスタイルを `@page 名前 { … }` で定義して、それを文書中の該当要素に `page: 名前` というプロパティ指定で割り当てる機能
-  - **代替手段その1**：複数の HTML 文書で構成される本にして、ページの種類ごとに別のスタイルシートを HTML 文書に指定することで、ページのスタイルを切り替えることができる。
-  - **代替手段その2**: EPUB Adaptive Layout を使用する。ページの種類ごとにページテンプレートを定義することができる。
+  - **代替手段その 1**：複数の HTML 文書で構成される本にして、ページの種類ごとに別のスタイルシートを HTML 文書に指定することで、ページのスタイルを切り替えることができる。
+  - **代替手段その 2**: EPUB Adaptive Layout を使用する。ページの種類ごとにページテンプレートを定義できる。
 - [#428: Support "@page :blank"](https://github.com/vivliostyle/vivliostyle.js/issues/428)
   - **要望**：改丁（章を奇数ページから開始するなど）で空白ページができるときに、その空白ページのスタイルを指定できるようにする `:blank` ページセレクターのサポート。
 - [#149: Add support for GCPM bookmarks](https://github.com/vivliostyle/vivliostyle.js/issues/149)
@@ -110,11 +110,11 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **要望**：Unicode コードポイントの範囲によってフォントを割り当てる `unicode-range` 記述子のサポート。
   - **メモ**：ブラウザでは標準的に使えるようになっているのに Vivliostyle で現在これが使えないのは残念なところ。
 - [#154: Support the font-variant-* longhands](https://github.com/vivliostyle/vivliostyle.js/issues/154)
-  - **要望**：フォントの字形を切り替える `font-variant-*` （font-variant-caps, font-variant-east-asian, font-variant-ligatures, font-variant-numeric, font-variant-position）プロパティのサポート。
+  - **要望**：フォントの字形を切り替える `font-variant-*`（font-variant-caps, font-variant-east-asian, font-variant-ligatures, font-variant-numeric, font-variant-position）プロパティのサポート。
 
 ## Layout enhancement（高度なレイアウトのCSS仕様サポート）
 
-高度なレイアウトを実現するCSS仕様のサポート：[CSS Page Floats](https://drafts.csswg.org/css-page-floats/)、[CSS Grid Layout](https://drafts.csswg.org/css-grid/)[CSS Multi-column Layout](https://drafts.csswg.org/css-multicol/) などに関する課題です。
+高度なレイアウトを実現する CSS 仕様のサポート：[CSS Page Floats](https://drafts.csswg.org/css-page-floats/)、[CSS Grid Layout](https://drafts.csswg.org/css-grid/)[CSS Multi-column Layout](https://drafts.csswg.org/css-multicol/) などに関する課題です。
 
 - [#539: Support CSS Grid Layout](https://github.com/vivliostyle/vivliostyle.js/issues/539)
   - **要望**：CSS グリッドレイアウトのサポート。
@@ -126,11 +126,11 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **メモ**：現在の段組の実装は、EPUB Adaptive Layout でのページ区画で指定する段組の実装がベースで、ルートまたは body 要素に指定された段組をページエリア全体の段組の扱いに変えてサポートしている。それ以外の要素での段組のプロパティはそのままブラウザに渡されるので、ページの中で部分的に使われたときに機能するが、複数ページに渡るときの分割処理などはできていない。
 - [#542: Support column-span](https://github.com/vivliostyle/vivliostyle.js/issues/542)
   - **要望**：段組の段抜きを指定する `column-span` プロパティのサポート。
-  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置することができる。
+  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置できる。
 
 ## Web standards（Web標準仕様のサポート）
 
-Web標準仕様のサポート：最新ブラウザでサポートされているHTMLやCSSの機能など。他のプロジェクトに分類できるものを除きます。
+Web 標準仕様のサポート：最新ブラウザでサポートされている HTML や CSS の機能など。他のプロジェクトに分類できるものを除きます。
 
 - [#266: Support the fill, max-content, min-content, and fit-content values for width and height.](https://github.com/vivliostyle/vivliostyle.js/issues/266)
   - **要望**：ボックスのサイズを指定する `width` や `height` プロパティの値 `min-content`, `max-contant`, `fit-content` のサポート。
@@ -138,8 +138,8 @@ Web標準仕様のサポート：最新ブラウザでサポートされてい�
   - **要望**：HTML 文書のベース URL を指定する `<base>` 要素のサポート。
 - [#540: Support CSS custom properties (variables)](https://github.com/vivliostyle/vivliostyle.js/issues/540)
   - **要望**：CSS カスタムプロパティ（CSS 変数）のサポート。
-  - **代替手段その1**: Sass など CSS のプリプロセッサの変数を使う。
-  - **代替手段その2**: EPUB Adaptive Layout の名前付きの値の定義 `@-epubx-define` を使う。
+  - **代替手段その 1**: Sass など CSS のプリプロセッサの変数を使う。
+  - **代替手段その 2**: EPUB Adaptive Layout の名前付きの値の定義 `@-epubx-define` を使う。
 - [#145: add support for user-select](https://github.com/vivliostyle/vivliostyle.js/issues/145)
   - **要望**：ユーザーが文章を範囲選択できるかどうかを設定する `user-select` プロパティのサポート。
 
