@@ -1,3 +1,9 @@
+---
+title: Remarkで広げるMarkdownの世界
+author:
+  - spring-raining
+---
+
 # Remarkで広げるMarkdownの世界
 
 はじめましてこんにちは、はるさめです。本誌は名目上はVivliostyleについて紹介する同人誌なのですが、またしても空気を読まずVivliostyleではないOSSプロジェクト「**Remark**」について紹介したいと思います。

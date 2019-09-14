@@ -1,3 +1,9 @@
+---
+title: Vivliostyle のこれからの開発課題
+author:
+  - 村上真雄
+---
+
 # Vivliostyle のこれからの開発課題
 
 先日のイベント〈**Vivliostyle 開発者とユーザーの集い 2019夏**〉[^1] の《第1部》開発者ミーティング「**Vivliostyle開発のこれまでと、これからへ**」[^2]で、Vivliostyle.js ソースコードの TypeScript 化が完了したことで今後の開発が楽になったことと、開発課題(issue)を課題カテゴリーごとのプロジェクトに整理して GitHub Projects[^3] で管理するようにしたことを説明して、ミーティング参加者（30名くらい）にどのプロジェクトが重要か聞きました（複数回答）。結果は以下：
@@ -105,7 +111,7 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **メモ**：ブラウザでは標準的に使えるようになっているのに Vivliostyle で現在これが使えないのは残念なところ。
 - [#154: Support the font-variant-* longhands](https://github.com/vivliostyle/vivliostyle.js/issues/154)
   - **要望**：フォントの字形を切り替える `font-variant-*` （font-variant-caps, font-variant-east-asian, font-variant-ligatures, font-variant-numeric, font-variant-position）プロパティのサポート。
- 
+
 ## Layout enhancement（高度なレイアウトのCSS仕様サポート）
 
 高度なレイアウトを実現するCSS仕様のサポート：[CSS Page Floats](https://drafts.csswg.org/css-page-floats/)、[CSS Grid Layout](https://drafts.csswg.org/css-grid/)[CSS Multi-column Layout](https://drafts.csswg.org/css-multicol/) などに関する課題です。

@@ -8,8 +8,10 @@ import ruby from 'remark-ruby'
 import stringify from 'rehype-stringify'
 import raw from 'rehype-raw'
 import format from 'rehype-format'
+import footnoteInPlace from 'dewriteful/lib/packages/remark-footnote-in-place'
+import slugger from 'dewriteful/lib/packages/remark-dewriteful-slugger'
 import { highlight, copyFrontmatter, doc, linkMd2Html } from './remark'
-import { code, crossReference, image } from './rehype'
+import { code, crossReference, image, footnote } from './rehype'
 
 /**
  * Convert markdown to HTML.
@@ -24,6 +26,8 @@ const md2html = (md: string, relativePath: string): Promise<string> => {
       .use(parseFrontmatter)
       .use(copyFrontmatter as any)
       .use(highlight as any)
+      .use(footnoteInPlace)
+      .use(slugger)
       .use(linkMd2Html as any)
       .use(crossref as any)
       .use(ruby)
@@ -32,7 +36,8 @@ const md2html = (md: string, relativePath: string): Promise<string> => {
         handlers: {
           code,
           crossReference,
-          image
+          image,
+          footnote
         }
       })
       .use(doc as any, { relativePath })

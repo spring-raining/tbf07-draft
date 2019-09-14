@@ -60,7 +60,7 @@ const buildHTML = async (src: string, dest: string, file: string) => {
     fs.writeFileSync(info.file, html)
     console.log(`INFO: "${file}" -> "${info.file}"`)
   } catch (err) {
-    console.error(`ERROR: ${err}`)
+    console.error(err)
   }
 }
 

@@ -34,6 +34,7 @@
     "@types/refractor": "^2.8.0",
     "chokidar": "^3.0.2",
     "cpx": "^1.5.0",
+    "dewriteful": "^0.1.0",
     "hastscript": "^5.1.0",
     "mdast-util-to-hast": "^6.0.2",
     "mkdirp": "^0.5.1",

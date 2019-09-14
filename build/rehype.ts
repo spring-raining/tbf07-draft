@@ -1,4 +1,20 @@
 import u from 'unist-builder'
+import all from 'mdast-util-to-hast/lib/all'
+
+const ext = /\.[^\.]+$/
+const whitespace = /\s/g
+const specials = /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~’]/g
+
+function figId(path: string, maintainCase = true) {
+  if (typeof path !== 'string') return null
+  if (!maintainCase) path = path.toLowerCase()
+
+  return path
+    .trim()
+    .replace(ext, '')
+    .replace(specials, '')
+    .replace(whitespace, '-')
+}
 
 /**
  * Process `code` on `remark-rehype`.
@@ -58,13 +74,22 @@ export const image = (h: any, node: any) => {
   if (node.title !== null && node.title !== undefined) {
     props.title = node.title
   }
+  const id = figId(node.url)
 
   const children = [h(node, 'img', props)]
   if (props.alt) {
-    children.push(
-      h(node, 'figcaption', { className: ['fig'] }, [u('text', props.alt)])
-    )
+    children.push(h(node, 'figcaption', null, [u('text', props.alt)]))
   }
 
-  return h(node, 'figure', null, children)
+  return h(node, 'figure', { id, className: ['fig'] }, children)
+}
+
+/**
+ * Process `footnote` on `remark-rehype`..
+ * @param h Processer of HAST.
+ * @param node Node of HAST.
+ * @returns HAST.
+ */
+export const footnote = (h: any, node: any) => {
+  return h(node, 'span', { className: ['footnote'] }, all(h, node))
 }

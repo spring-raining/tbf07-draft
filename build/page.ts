@@ -21,7 +21,6 @@ type Metadata = {
 const content = (head: any, body: any, meta: Metadata) => {
   if (meta.title) {
     head.push(h('title', [meta.title]))
-    body.unshift(h('h1', [meta.title]))
   }
 
   const options = { role: 'doc-chapter', className: meta.type || undefined }

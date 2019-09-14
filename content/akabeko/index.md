@@ -1,3 +1,9 @@
+---
+title: CSS で View を定義する意義
+author:
+  - akabeko
+---
+
 # CSS で View を定義する意義
 
 アプリケーションや文書の View (外観) を定義する技術として見た、CSS の意義と期待について。

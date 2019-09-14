@@ -1,3 +1,9 @@
+---
+title: EPUBファイルからVivliostyleでPDFを作りたい！
+author:
+  - 田嶋　淳
+---
+
 # EPUBファイルからVivliostyleでPDFを作りたい！
 
 __田嶋　淳（@JunTajima）http://densyodamasii.com/__
