@@ -65,7 +65,7 @@ author:
 - [#418: Add TrimBox and BleedBox to output PDF](https://github.com/vivliostyle/vivliostyle.js/issues/418)
   - **要望**：Vivliostyle でトンボ付きで PDF 出力したとき TrimBox と BleedBox の情報も出力されてほしい。
 - [#432: @page size value ignores decimal numbers](https://github.com/vivliostyle/vivliostyle.js/issues/432)
-  - **問題**：Chrome ブラウザでは CSS の `@page { size: … }` で指定のページサイズで PDF が生成されるが、そのとき整数ポイント単位に丸められてしまし正確なページサイズにならない。
+  - **問題**：Chrome ブラウザでは CSS の `@page { size: … }` で指定のページサイズで PDF が生成されるが、そのとき整数ポイント単位に丸められてしまい正確なページサイズにならない。
 
 ## Input formats（多様な入力文書フォーマットのサポート）
 
@@ -126,7 +126,7 @@ Vivliostyle は現在、入力文書フォーマットとして (X)HTML 文書�
   - **メモ**：現在の段組の実装は、EPUB Adaptive Layout でのページ区画で指定する段組の実装がベースで、ルートまたは body 要素に指定された段組をページエリア全体の段組の扱いに変えてサポートしている。それ以外の要素での段組のプロパティはそのままブラウザに渡されるので、ページの中で部分的に使われたときに機能するが、複数ページに渡るときの分割処理などはできていない。
 - [#542: Support column-span](https://github.com/vivliostyle/vivliostyle.js/issues/542)
   - **要望**：段組の段抜きを指定する `column-span` プロパティのサポート。
-  - **代替手段**: EPUB Adaptive Layout を使用する。`-epubx-flow-into: 名前` の指定がある要素を `-epubx-flow-from: 名前` の指定があるページ区画に配置できる。
+  - **代替手段**: EPUB Adaptive Layout を使用する。ページテンプレートでページ区画を定義することで、段組で段抜きの区画があるようなレイアウトが実現できる。
 
 ## Web standards（Web標準仕様のサポート）
 
@@ -164,3 +164,61 @@ Web 標準仕様のサポート：最新ブラウザでサポートされてい�
 
 以上、Vivliostyle の今後の開発課題の主なものでした。
 
+### 開発体制の現状と、まずできること
+
+さて、これらをどうしていくかです。現在このオープンソース・プロジェクトの主体である Vivliostyle Foundation は、昨年、それまで Vivliostyle を開発してきた会社（現在の社名は Trim-marks Inc.）がオープンソース製品の取り扱いを終了したことに伴い、会社から独立してオープンソース・プロジェクトを維持していくために発足したものです。代表の私は、元々の Vivliostyle 社の創業者ですが、自分が Vivliostyle.js のメインの開発者だったことはそれまでなくて、そのコードに少しずつ手を入れ始めたのは昨年からです。そんな私と数名のボランティアの協力で維持しているものなので、開発リソースはとても限られていて、資金があるわけでもありません。
+
+この記事の最初のほうで「とくに要望が多い項目を意識しながらも、どのプロジェクトも進めていきたい」と書いたものの、実際は今すぐ取りかかれそうなことはバグを直していくことや、すでにブラウザで実装されている機能を Vivliostyle から利用可能にするなど、比較的簡単な作業に限られそうです。
+
+要望が多い、Paged media（CSS ページメディア関連仕様のサポート）の柱（欄外見出し）の機能や、Layout enhancement（高度なレイアウトの CSS 仕様サポート）の段組レイアウトの制限をなくすことなどは、それぞれ本格的な開発作業を要するものであり、それらを進められるようにするためには、資金的な支援が得られてじっくり開発に取り組めるようになることや、あるいはボランティアでの貢献をしたい開発者・協力者たちのコミュニティを育てられるかということに掛かっています。
+
+### Vivliostyle を活用してください！ それから、開発支援に感謝！
+
+多くの人に使ってもらえることで Vivliostyle が世の中に認知されて、プロジェクトへの協力が得られやすくなることを期待しています。
+
+Vivliostyle をどう活用するかは、そのオープンソースのライセンス（AGPLv3）に違反しないかぎり自由です。自費出版への利用などはもちろんですが、企業内での利用、商業出版への利用、出版コンテンツの閲覧サービスへの利用、Web コンテンツの印刷機能への利用など、いろいろと使い道があるでしょう。
+
+そのような Vivliostyle 活用の相談については、コミュニティでの投稿歓迎ですが、オープンにできない案件については私に直接ご相談くだされば対応します（内容によって有料でのコンサルティングも）。また、現在の Vivliostyle に足りない機能や修正が必要な問題（すでに issue 登録されている課題でもそれ以外でも）がある場合、その開発についてご相談ください。オープンソースですので、特定ユーザー（企業など）の必要によりそのユーザーの負担（共同開発や開発費負担）で開発された機能もオープンソースで公開されて、あとから利用する別のユーザーにも恩恵があるということになります。現在 Vivliostyle で利用できる機能の一部はそのような形で支援を受けて開発されたものです。Vivliostyle のリリースノートの謝辞（Acknowledgements）に開発貢献・支援いただいた企業などのお名前を入れております。開発支援に感謝します。
+
+### 開発に興味ある人は、一緒に Vivliostyle のソースコードを読もう
+
+Vivliostyle.js ソースコードの TypeScript への移行は、ソースコードを読みやすくして、今後の開発がよりスムーズに行えるようにと行ったものですが、それでもこのプログラムを理解して開発できるまでになるのは容易ではないと思います。
+
+そこで、みんなでソースコードを読もうという、Vivliostyle コードリーディング会をやっていこうという声が上がってます。そのスケジュールなど決まったら案内しますのでご参加ください。
+
+Vivliostyle Viewer (vivliostyle.js + vivliostyle-ui) をソースコードからビルドして、テスト、デバッグ実行する手順などは、[Vivliostyle.js Development](https://github.com/vivliostyle/vivliostyle.js/wiki/Development) にあります。ぜひこの手順でビルドして試してみてください。
+
+以下、Vivliostyle の開発に関係する URL のまとめです：
+
+- Vivliostyle 公式サイト（日本語）: https://vivliostyle.org/ja/
+  - コミュニティ: https://vivliostyle.org/ja/community/
+  - ドキュメント: https://vivliostyle.org/ja/docs/
+    - Vivliostyle.js Development: https://github.com/vivliostyle/vivliostyle.js/wiki/Development
+- vivliostyle.js: https://github.com/vivliostyle/vivliostyle.js
+  - issues: https://github.com/vivliostyle/vivliostyle.js/issues
+  - projects: https://github.com/vivliostyle/vivliostyle.js/projects
+- vivliostyle-ui: https://github.com/vivliostyle/vivliostyle-ui
+- vivliostyle-print: https://github.com/vivliostyle/vivliostyle-print
+- vivliostyle-savepdf: https://github.com/vivliostyle/vivliostyle-savepdf
+
+### 不具合や要望などフィードバックをお寄せください
+
+Vivliostyle を使っていて気になったことや、必要な機能の要望などは、どんどんお寄せください。ユーザーからのフィードバックがあることは励みになります。
+
+不具合や要望などのフィードバックは、GitHub の issue に登録してくれるとありがたいですが、Vivliostyle のコミュニティ: Slack、Twitter、Facebook グループでの質問やフィードバックも歓迎します。
+
+### Vivliostyle コミュニティをチェック！
+
+- Vivliostyle コミュニティ https://vivliostyle.org/ja/community/
+
+ここから参加できる Vivliostyle の Slack が、Vivliostyle 開発者とユーザーのコミュニティの中心になっています。現在の参加者数45名くらい。
+まだの方はぜひご参加ください。次のチャンネルなどがあります：
+
+- #general: いろいろお知らせなど
+- #random: 自己紹介や雑多な話題をどうぞ
+- #issues: Vivliostyle のバグや機能追加の要望をどうぞ
+- #q-and-a: Vivliostyle についての質問と回答
+- #techbookfest: 技術書典向けに Vivliostyle ユーザー会の合同誌を作る相談など
+
+それから Vivliostyle の Twitter や Facebook グループもどうぞよろしく。
+Vivliostyle への皆様のご支援に感謝します！
