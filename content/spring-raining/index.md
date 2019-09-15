@@ -14,7 +14,7 @@ spring-raining
 
 ## Remark
 
-Remark とは「Markdown processor」という紹介文の通り、Remark で書かれたテキストを読み込み様々な変換を施すことができる JavaScript 製のライブラリです。Remark は様々なライブラリと組み合わせて目的の形式のテキストに変換でき、**Rehype** と一緒に使うことで Markdown を HTML に変換できます。同様の処理をしてくれるライブラリとしては Marked.js が有名ですが、Remark の強力な機能は、Markdown を **抽象構文木（AST）**に変換することで、より柔軟に構文を改造できる点です。[^ Haskell 製のライブラリ **Pandoc** も同様の方針で実装されたテキスト変換ツールで、様々な形式のテキストを入力・出力できます]
+Remark とは「Markdown processor」という紹介文の通り、Remark で書かれたテキストを読み込み様々な変換を施すことができる JavaScript 製のライブラリです。Remark は様々なライブラリと組み合わせて目的の形式のテキストに変換でき、**Rehype** と一緒に使うことで Markdown を HTML に変換できます。同様の処理をしてくれるライブラリとしては Marked.js が有名ですが、Remark の強力な機能は、Markdown を **抽象構文木（AST）**に変換することで、より柔軟に構文を改造できる点です。[^ Haskell 製のライブラリ **<a href="https://pandoc.org/">Pandoc</a>** も同様の方針で実装されたテキスト変換ツールで、様々な形式のテキストを入力・出力できます]
 
 なお、非常に紛らわしいのですが、GitHub 上で検索すると「Remark」という名前のプロジェクトが 2 つ見つかります。今回紹介するプロジェクトは `gnab/remark` ではなく、`remarkjs/remark` のほうです。公式サイトも https://remarkjs.com ではなく https://remark.js.org なので気をつけてください。
 
@@ -23,11 +23,11 @@ Remark とは「Markdown processor」という紹介文の通り、Remark で書
 
 Remark をはじめとしたライブラリ群は役割ごとに細かくパッケージ化されており、それぞれの目的に応じて複数を組み合わせて用います。それぞれのパッケージは総称して **Unified** というプロジェクトに属しているのですが、各パッケージの役割が少し分かりづらいためここで整理しておきます。
 
-- **remark/rehype** : Markdown/HTML の構文を解析・構築する処理系。それぞれに **parse** と **stringify** の 2 つのパッケージがあり、**remark-parse** は Markdown から mdast をへ変換でき、**remark-stringify** は mdast からテキストの Markdown を構築できる
-- **mdast/hast** : Markdown/HTML の構文を解析して得られる AST の仕様。それぞれの仕様は **unist** という仕様を拡張して定義されており、GitHub 上では `syntax-tree` という Organization で管理されている
-- **remark-rehype/rehype-remark** : mdast（hast）から hast（mdast）に変換するパッケージ。実際の処理は **mdast-util-to-hast/hast-util-to-mdast** が実施している。
-- **vfile** : ファイルのパス情報を抽象化して管理するパッケージ
-- **unified** : Unified ファミリーの複数のライブラリを合成し、処理を実行する関数を得るためのパッケージ
+- **[remark](https://github.com/remarkjs/remark)/[rehype](https://github.com/rehypejs/rehype)** : Markdown/HTML の構文を解析・構築する処理系。それぞれに **parse** と **stringify** の 2 つのパッケージがあり、**[remark-parse](https://github.com/remarkjs/remark/tree/master/packages/remark-parse)** は Markdown から mdast をへ変換でき、**[remark-stringify](https://github.com/remarkjs/remark/tree/master/packages/remark-stringify)** は mdast からテキストの Markdown を構築できる
+- **[mdast](https://github.com/syntax-tree/mdast)/[hast](https://github.com/syntax-tree/hast)** : Markdown/HTML の構文を解析して得られる AST の仕様。それぞれの仕様は **[unist](https://github.com/syntax-tree/unist)** という仕様を拡張して定義されており、GitHub 上では `syntax-tree` という Organization で管理されている
+- **[remark-rehype](https://github.com/remarkjs/remark-rehype)/[rehype-remark](https://github.com/rehypejs/rehype-remark)** : mdast（hast）から hast（mdast）に変換するパッケージ。実際の処理は **[mdast-util-to-hast](https://github.com/syntax-tree/mdast-util-to-hast)/[hast-util-to-mdast](https://github.com/syntax-tree/hast-util-to-mdast)** が実施している。
+- **[vfile](https://github.com/vfile/vfile)** : ファイルのパス情報を抽象化して管理するパッケージ
+- **[unified](https://github.com/unifiedjs/unified)** : Unified ファミリーの複数のライブラリを合成し、処理を実行する関数を得るためのパッケージ
 
 これらの処理をまとめた、unified の README にある便利な図を引用します。
 
@@ -212,11 +212,11 @@ const processor = unified()
 プラグインは unified のメソッドチェーンに付け加えるだけで利用できます（順番に気をつけてください）。早速 mdast へのパース結果を見てみましょう。
 
 ```
-root[1] (1:1-1:20, 0-19)
-└─ paragraph[2] (1:1-1:20, 0-19)
-   ├─ text: "とある魔術の" (1:1-1:7, 0-6)
-   └─ ruby[1] (1:7-1:20, 6-19) [rubyText="インデックス"][data={"hName":"ruby"}]
-      └─ text: "禁書目録" (1:8-1:12, 7-11)
+root[1]
+└─ paragraph[2]
+   ├─ text: "とある魔術の"
+   └─ ruby[1] [rubyText="インデックス"][data={"hName":"ruby"}]
+      └─ text: "禁書目録"
 ```
 
 正しくパースされているようです！　ルビの内容を `rubyText` に入れることで、このあと HTML への変換時に用いることができます。また、`hName` という名前のプロパティは remark-rehype が読み取りに対応しており、HTML 変換時のタグ名を指定できます。
@@ -224,7 +224,7 @@ root[1] (1:1-1:20, 0-19)
 
 ## Transformer を拡張してみる
 
-次に、解析された構文木を正しく HTML に変換するため Transformer を改造します。remark-rehype にはオプションとして handler を追加できるため、ruby 用の handler を用意する形で実装します。
+次に、解析された構文木を正しく HTML に変換するため Transformer を改造します。remark-rehype にはオプションとして handler を追加できるため、ルビ用の handler を用意する形で実装します。
 
 ```js
 const all = require('mdast-util-to-hast/lib/all');
@@ -246,9 +246,9 @@ function rubyHandler(h, node) {
 }
 ```
 
-`h` は mdast ノードから hast ノードへ変換する関数となっており、この関数の引数として実際の HTML タグ名などを指定します。`all` はすべての子ノードに `h` を適用するヘルパー関数で、`u` もまた unist ノードを作成するヘルパー関数です。この handler では、`rtNode` という新しいノードを作成し、それを ruby タグのノードの子として挿入していることがわかります。
+`h` は mdast ノードから hast ノードへ変換する関数となっており、この関数の引数として実際の HTML タグ名などを指定します。`all` はすべての子ノードに `h` を適用するヘルパー関数で、`u` もまた unist ノードを作成するヘルパー関数です。この例では、`rtNode` という新しいノードを作成し、それを `<ruby>` タグのノードの子として挿入していることがわかります。
 
-作成した handler は、以下の形式で利用します。オプションとして `handlers` にオブジェクト形式で与えることで、名前の一致する mdast ノードはこの handler を通して hast ノードが生成されるようになります。
+作成した handler は、以下の形式で利用します。オプションとして `handlers` にオブジェクト形式で与えることで、名前の一致する mdast ノードはこの関数を通して hast ノードが生成されるようになります。
 
 ```js
 const processor = unified()
@@ -263,12 +263,12 @@ const processor = unified()
 すると、出力される hast は以下のようになります。
 
 ```
-root[1] (1:1-1:20, 0-19)
-└─ element[2] (1:1-1:20, 0-19) [tagName="p"]
-   ├─ text: "とある魔術の" (1:1-1:7, 0-6)
-   └─ element[2] (1:7-1:20, 6-19) [tagName="ruby"]
-      ├─ text: "禁書目録" (1:8-1:12, 7-11)
-      └─ element[1] (1:12-1:20, 11-19) [tagName="rt"]
+root[1]
+└─ element[2] [tagName="p"]
+   ├─ text: "とある魔術の"
+   └─ element[2] [tagName="ruby"]
+      ├─ text: "禁書目録"
+      └─ element[1] [tagName="rt"]
          └─ text: "インデックス"
 ```
 

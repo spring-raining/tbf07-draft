@@ -164,8 +164,8 @@ p.line > strong:first-child {
 
 ```css
 p {
-     margin-left: 6em; /* ブロック全体を 6em 左（縦の場合は上）に */
-     text-indent: -6em; /* 先頭行のみ 6em 右（縦の場合は下）に */
+     margin-left: 6em; /* ブロック全体を 6em 左（縦の場合は上）インデント */
+     text-indent: -6em; /* 先頭行のみ 6em 左（縦の場合は上）に突き出し */
 }
 ```
 
