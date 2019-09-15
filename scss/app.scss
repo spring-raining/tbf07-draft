@@ -20,8 +20,12 @@
   }
   & ~ figure#fig_6 img,
   & ~ figure#fig_7 img,
+  & ~ figure#fig_9 img,
+  & ~ figure#fig_10 img,
+  & ~ figure#fig_11 img,
   & ~ figure#fig_12 img,
-  & ~ figure#fig_13 img {
+  & ~ figure#fig_13 img,
+  & ~ figure#fig_14 img {
     box-shadow: 0 3px 14px 0 #cccccc;
     border-radius: 0.2rem;
   }
