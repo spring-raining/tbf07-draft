@@ -60,8 +60,8 @@ author:
 
 ```css
 p {
-     margin-left: 6em; /* ブロック全体を 6em 左（縦の場合は上）に */
-     text-indent: -6em; /* 1行目だけ 6em 右（縦の場合は下）に */
+     margin-left: 6em; /* ブロック全体を 6em 左（縦の場合は上）インデント */
+     text-indent: -6em; /* 先頭行のみ 6em 左（縦の場合は上）に突き出し */
 }
 ```
 
@@ -173,16 +173,13 @@ p {
 
 ```html
 <p class="line">
-  <strong>存置<span class="text-combine">B</span></strong>
-  それはメディアの問題です。
+  <strong>存置B</strong>それはメディアの問題です。
 </p>
 <p class="line">
-  <strong>存置<span class="text-combine">A</span></strong>
-  争点をずらしているよ。
+  <strong>存置A</strong>争点をずらしているよ。
 </p>
 <p class="line">
-  <strong>片桐</strong>
-  遺族の気持ちを死刑の理由にするならば、もしも天涯孤独の人が殺されたとき、遺族はいないからその罪は軽くなります。それでいいのですか。
+  <strong>片桐</strong>遺族の気持ちを死刑の理由にするならば、もしも天涯孤独の人が殺されたとき、遺族はいないからその罪は軽くなります。それでいいのですか。
 </p>
 ```
 
