@@ -7,7 +7,8 @@ author:
 # Vivliostyle のこれからの開発課題
 
 <div class="draft-author">
-村上真雄
+村上 真雄 (@MurakamiShinyu)<br>
+Vivliostyle Foundation 代表
 </div>
 
 先日のイベント〈**Vivliostyle 開発者とユーザーの集い 2019 夏**〉[^1] の《第 1 部》開発者ミーティング「**Vivliostyle 開発のこれまでと、これからへ**」[^2]で、Vivliostyle.js ソースコードの TypeScript 化が完了したことで今後の開発が楽になったことと、開発課題(issue)を課題カテゴリーごとのプロジェクトに整理して GitHub Projects[^3] で管理するようにしたことを説明して、ミーティング参加者（30 名くらい）にどのプロジェクトが重要か聞きました（複数回答）。結果は以下：
