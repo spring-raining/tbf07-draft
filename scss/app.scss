@@ -8,7 +8,95 @@
 @import './toc.scss';
 
 
-#vivliostyleで縦組シナリオを組版する {
+section#profile {
+  .author {
+    display: flex;
+    margin: 2rem 0;
+    img {
+      margin: 0 10px 8px 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+    }
+  }
+
+  code {
+    margin: 0 0 0 .5em;
+    & > i {
+      vertical-align: -.03em;
+      margin-right: .4em;
+    }
+  }
+
+  .profile {
+    flex-grow: 1;
+    h4 {
+      display: inline-block;
+      margin: 0 0 4px;
+    }
+  }
+}
+
+section#colophon {
+  position: relative;
+  float-reference: page;
+  float: bottom;
+  margin-bottom: 0;
+
+  ul.editions {
+    padding: 0;
+    list-style: none;
+    time {
+      display: inline-block;
+      width: 10em;
+    }
+  }
+
+  table.info {
+    margin: 0;
+    width: 100%;
+    border-top: 2px solid currentColor;
+    tr {
+      border: 0;
+      box-shadow: none;
+    }
+    tr:last-child {
+      border-bottom: 1px solid currentColor;
+    }
+    td {
+      vertical-align: top;
+      padding-left: 0;
+    }
+  }
+}
+
+article > h1 {
+  margin-bottom: 1rem;
+  position: relative;
+  text-shadow: 0 0 5px #ffffff;
+  filter: blur(0); // fix text-shadow on PDF output
+  &::before {
+    content: '';
+    position: absolute;
+    left: -140px;
+    right: -140px;
+    bottom: -5rem;
+    height: 500px;
+    background: no-repeat url(/assets/article_bg.png) bottom;
+    background-size: contain;
+    z-index: -1;
+    opacity: 0.5;
+
+    @media print {
+      & {
+        background-image: url(/assets/article_bg@print.png);
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+#vivliostyle-で縦組シナリオを組版する {
   & ~ figure#fig_1 img,
   & ~ figure#fig_9 img,
   & ~ figure#fig_10 img,
@@ -28,6 +116,7 @@
   & ~ figure#fig_14 img {
     box-shadow: 0 3px 14px 0 #cccccc;
     border-radius: 0.2rem;
+    filter: blur(0); // fix box-shadow on PDF output
   }
 
   & ~ figure#fig_12,
@@ -42,7 +131,10 @@
   }
 }
 
-#epubファイルからvivliostyleでpdfを作りたい！ {
+#epub-ファイルから-vivliostyle-で-pdf-を作りたい！ {
+  & ~ figure#image006 img {
+    width: 85%;
+  }
   & ~ figure#image002 img,
   & ~ figure#image009 img {
     width: 80%;
@@ -53,5 +145,14 @@
   }
   & ~ figure#image005 img {
     width: 40%;
+ }
+ & ~ figure#image001 img,
+ & ~ figure#image003 img,
+ & ~ figure#image004 img,
+ & ~ figure#image007 img,
+ & ~ figure#image009 img {
+   box-shadow: 0 3px 14px 0 #cccccc;
+   border-radius: 0.2rem;
+   filter: blur(0); // fix box-shadow on PDF output
  }
 }

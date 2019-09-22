@@ -1,10 +1,10 @@
 ---
-title: EPUBファイルからVivliostyleでPDFを作りたい！
+title: EPUB ファイルから Vivliostyle で PDF を作りたい！
 author:
   - 田嶋　淳
 ---
 
-# EPUBファイルからVivliostyleでPDFを作りたい！
+# EPUB ファイルから Vivliostyle で PDF を作りたい！
 
 <div class="draft-author">
 田嶋　淳（@JunTajima）<span class="footnote" style="text-align: left;"><a href="http://densyodamasii.com/">http://densyodamasii.com/</a></span>
@@ -17,6 +17,8 @@ author:
 
 ## やりたいこと
 　最初に、やりたいことを箇条書きでまとめておく。
+
+<div class="page-break"></div>
 
 1. EPUB を CSS の標準的な表現に沿った形で PDF 化したい
 2. 元の本の版面にできるだけ合わせたい

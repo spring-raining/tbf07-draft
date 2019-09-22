@@ -10,10 +10,8 @@
   body {
     margin: auto 4rem;
     padding-bottom: 4rem;
-  }
-  article {
     margin: 0 auto;
-    margin-top: 8rem;
+    padding-top: 8rem;
     max-width: 60rem;
   }
   section {
@@ -91,8 +89,14 @@
     break-inside: avoid;
   }
 
-  article > h1 {
-    margin-top: -8mm;
+  a {
+    color: currentColor;
+    text-decoration: underline;
+  }
+
+  article > h1,
+  section#profile {
+    margin-top: -10mm;
   }
 
   pre[class*='language-'] {
@@ -155,29 +159,32 @@
 
 // Cover page
 @page :first {
-  margin: 0;
-  background-color: $color_red;
+  // margin: 0;
+  background-color: $color_gray;
 
-  @top-left {
-    content: '';
+  @top-left-corner {
+    content: none;
   }
   @top-center {
     content: none;
   }
-  @top-right {
-    content: '';
+  @top-right-corner {
+    content: none;
   }
-
   @bottom-center {
     content: none;
   }
+  @bottom-left-corner {
+    content: none;
+  }
   @bottom-left {
-    content: '';
-    border: none;
+    content: none;
   }
   @bottom-right {
-    content: '';
-    border: none;
+    content: none;
+  }
+  @bottom-right-corner {
+    content: none;
   }
 }
 
@@ -191,7 +198,7 @@
     font-size: $master-font-size-for-print;
     color: $color_white;
     text-align: left;
-    padding-top: 12mm;
+    padding-top: 8mm;
   }
   @bottom-left {
     content: counter(page);
@@ -215,7 +222,7 @@
     font-size: $master-font-size-for-print;
     color: $color_white;
     text-align: right;
-    padding-top: 12mm;
+    padding-top: 8mm;
   }
   @bottom-right {
     content: counter(page);

@@ -84,7 +84,7 @@ table {
   display: table;
   max-width: 100%;
   margin: 1rem auto;
-  border-color: $color_black;
+  border-color: currentColor;
   border-collapse: collapse;
   th, td {
     padding: .2em .2em .2em 0;
@@ -95,16 +95,16 @@ table {
     border: 0;
   }
   th {
-    border-top: 1px solid $color_black;
-    border-bottom: 1px solid $color_black;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
   }
   tr {
     // border-bottom: .5px solid
     $narrow-border-width: .4px;
-    box-shadow: 0 $narrow-border-width+.3px 0 -.3px $color_black;
+    box-shadow: 0 $narrow-border-width+.3px 0 -.3px currentColor;
   }
   tr:last-child {
-    border-bottom: 1px solid $color_black;
+    border-bottom: 1px solid;
   }
 }
 
@@ -121,6 +121,7 @@ blockquote {
 
 .draft-author {
   text-align: right;
+  margin-bottom: 3rem;
 }
 
 .page-break {
