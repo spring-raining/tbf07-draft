@@ -82,14 +82,14 @@ article > h1 {
     right: -140px;
     bottom: -5rem;
     height: 500px;
-    background: no-repeat url(/assets/article_bg.png) bottom;
+    background: no-repeat url(assets/article_bg.png) bottom;
     background-size: contain;
     z-index: -1;
     opacity: 0.5;
 
     @media print {
       & {
-        background-image: url(/assets/article_bg@print.png);
+        background-image: url(assets/article_bg@print.png);
         opacity: 0.7;
       }
     }
